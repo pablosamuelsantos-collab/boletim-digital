@@ -4,7 +4,8 @@
    ========================================================= */
 
 /* ---------- DADOS BRUTOS (não alterar) ---------- */
-const dadosBrutos = [
+const dadosBrutos
+ = [
   { disciplina: "Língua Portuguesa", tri1: 82, tri2: "7,8", tri3: 85, faltas: [2, 1, 1] },
   { disciplina: "Matemática", tri1: 52, tri2: "5,8", tri3: null, faltas: [3, 2, 1] },
   { disciplina: "Ciências", tri1: "8,1", tri2: 76, tri3: 8.0, faltas: [1, 2, 0] },
@@ -12,7 +13,8 @@ const dadosBrutos = [
   { disciplina: "Geografia", tri1: 68, tri2: 7.3, tri3: "7,9", faltas: [0, 1, 1] },
   { disciplina: "Língua Inglesa", tri1: 86, tri2: "8,1", tri3: 8.7, faltas: [1, 0, 0] },
   { disciplina: "Arte", tri1: 9.0, tri2: 92, tri3: null, faltas: [1, 1, 0] },
-  { disciplina: "Educação Física", tri1: 95, tri2: 9.0, tri3: "9,4", faltas: [0, 1, 0] },
+  { disciplina: "Educa
+ção Física", tri1: 95, tri2: 9.0, tri3: "9,4", faltas: [0, 1, 0] },
   { disciplina: "Educação Digital", tri1: 88, tri2: 9.1, tri3: 93, faltas: [1, 0, 1] },
   { disciplina: "Educação Financeira", tri1: 74, tri2: "7,8", tri3: null, faltas: [1, 1, 1] },
   { disciplina: "Estudo Orientado", tri1: 8.0, tri2: 83, tri3: "8,5", faltas: [0, 1, 0] },
@@ -33,7 +35,8 @@ const FREQUENCIA_DEMONSTRATIVA = 92; // APENAS DEMONSTRATIVO — será tratado d
    ========================================================= */
 function normalizarNota(valor) {
   // Vazio, null ou undefined = nota ainda não lançada
-  if (valor === null || valor === undefined || valor === "") {
+  if (valor === null |
+| valor === undefined || valor === "") {
     return null;
   }
 
@@ -147,6 +150,7 @@ const disciplinasProcessadas = dadosBrutos.map(function (item) {
    ========================================================= */
 const corpoTabela = document.getElementById("corpo-tabela");
 
+
 disciplinasProcessadas.forEach(function (d) {
   const linha = document.createElement("tr");
 
@@ -176,6 +180,7 @@ const mediasDisponiveis = disciplinasProcessadas
 const mediaGeral = mediasDisponiveis.length > 0
   ? mediasDisponiveis.reduce(function (a, b) { return a + b; }, 0) / mediasDisponiveis.length
   : null;
+
 
 // Total de faltas de todas as disciplinas
 const totalFaltasGeral = disciplinasProcessadas.reduce(function (acc, d) {

@@ -8,50 +8,57 @@
 </head>
 <body>
 
-  <!-- CABEÇALHO -->
+  <!-- Cabeçalho -->
   <header class="cabecalho">
-    <h1>Boletim Digital</h1>
-    <p class="subtitulo">8º Ano — Estudante Exemplo</p>
+    <h1>📘 Boletim Digital</h1>
+    <p class="subtitulo">🎓 8º Ano</p>
   </header>
 
-  <main class="container">
+  <!-- Cards de resumo -->
+  <section class="cards">
+    <div class="card">
+      <span class="card-titulo">📊 Média Geral</span>
+      <span class="card-valor" id="mediaGeral">—</span>
+    </div>
+    <div class="card">
+      <span class="card-titulo">❌ Total de Faltas</span>
+      <span class="card-valor" id="totalFaltas">—</span>
+    </div>
+    <div class="card">
+      <span class="card-titulo">✅ Bom Desempenho</span>
+      <span class="card-valor" id="qtdBom">—</span>
+    </div>
+    <div class="card">
+      <span class="card-titulo">⚠️ Precisam de Atenção</span>
+      <span class="card-valor" id="qtdAtencao">—</span>
+    </div>
+    <div class="card">
+      <span class="card-titulo">🗓️ Frequência</span>
+      <span class="card-valor" id="frequencia">—</span>
+      <span class="card-extra" id="frequenciaTexto"></span>
+    </div>
+  </section>
 
-    <!-- CARDS DE RESUMO -->
-    <section class="cards" id="cards-resumo">
-      <!-- Os cards serão criados pelo JavaScript -->
-    </section>
+  <!-- Tabela de notas -->
+  <section class="tabela-container">
+    <table class="boletim">
+      <thead>
+        <tr>
+          <th>📚 Disciplina</th>
+          <th>1️⃣ 1º Tri</th>
+          <th>2️⃣ 2º Tri</th>
+          <th>3️⃣ 3º Tri</th>
+          <th>📈 Média</th>
+          <th>❌ Faltas</th>
+          <th>🏷️ Situação</th>
+        </tr>
+      </thead>
+      <tbody id="corpoTabela">
+        <!-- As linhas serão criadas pelo JavaScript -->
+      </tbody>
+    </table>
+  </section>
 
-    <!-- TABELA DE NOTAS -->
-    <section class="tabela-wrapper">
-      <h2>Notas por disciplina</h2>
-
-      <div class="tabela-responsiva">
-        <table>
-          <thead>
-            <tr>
-              <th>Disciplina</th>
-              <th>1º Tri</th>
-              <th>2º Tri</th>
-              <th>3º Tri</th>
-              <th>Média</th>
-              <th>Faltas</th>
-              <th>Situação</th>
-            </tr>
-          </thead>
-          <tbody id="corpo-tabela">
-            <!-- As linhas serão criadas pelo JavaScript -->
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="rodape">
-    <p>Projeto escolar — dados fictícios para demonstração.</p>
-  </footer>
-
-  <!-- SCRIPT -->
   <script src="script.js"></script>
 </body>
 </html>
