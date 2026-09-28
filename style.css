@@ -1,0 +1,195 @@
+/* ===== RESET BÁSICO ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* ===== CORES DO PROJETO (variáveis) ===== */
+:root {
+  --roxo: #7C3AED;          /* cor principal */
+  --roxo-escuro: #5B21B6;   /* variação mais escura */
+  --azul-claro: #E0F2FE;    /* cor secundária */
+  --cinza-fundo: #F8FAFC;   /* fundo geral */
+  --cinza-borda: #E2E8F0;   /* bordas suaves */
+  --texto: #1E293B;         /* texto principal */
+  --texto-suave: #64748B;   /* texto secundário */
+  --verde: #16A34A;         /* bom desempenho */
+  --amarelo: #D97706;       /* atenção */
+  --cinza-situacao: #94A3B8;/* nota não disponível */
+}
+
+/* ===== CORPO ===== */
+body {
+  background-color: var(--cinza-fundo);
+  color: var(--texto);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* ===== CABEÇALHO ===== */
+.cabecalho {
+  background-color: var(--roxo);
+  color: #fff;
+  padding: 24px 20px;
+  text-align: center;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+}
+
+.cabecalho h1 {
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+
+.subtitulo {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+/* ===== CARDS DE RESUMO ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.card .emoji {
+  font-size: 1.8rem;
+  background-color: var(--azul-claro);
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card .info {
+  display: flex;
+  flex-direction: column;
+}
+
+.card .valor {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--roxo-escuro);
+}
+
+.card .rotulo {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+/* ===== TABELA ===== */
+.tabela-wrapper h2 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: var(--roxo-escuro);
+}
+
+.tabela-responsiva {
+  overflow-x: auto;
+  background-color: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--cinza-borda);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px; /* força rolagem horizontal no celular */
+}
+
+thead {
+  background-color: var(--roxo);
+  color: #fff;
+}
+
+th, td {
+  padding: 12px 14px;
+  text-align: left;
+  font-size: 0.92rem;
+  border-bottom: 1px solid var(--cinza-borda);
+}
+
+th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+tbody tr:hover {
+  background-color: var(--azul-claro);
+}
+
+/* Etiquetas de situação */
+.situacao {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.situacao.bom {
+  background-color: #DCFCE7;
+  color: var(--verde);
+}
+
+.situacao.atencao {
+  background-color: #FEF3C7;
+  color: var(--amarelo);
+}
+
+.situacao.indisponivel {
+  background-color: #F1F5F9;
+  color: var(--cinza-situacao);
+}
+
+/* ===== RODAPÉ ===== */
+.rodape {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+  padding: 20px;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 600px) {
+  .cabecalho h1 {
+    font-size: 1.5rem;
+  }
+
+  .card .valor {
+    font-size: 1.1rem;
+  }
+
+  th, td {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+}
