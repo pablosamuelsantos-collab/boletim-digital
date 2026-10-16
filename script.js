@@ -288,7 +288,7 @@ function validarCampo(input) {
   const valor = input.value.trim();
   const nota = input.name.startsWith("tri");
   let convertido = null;
-  let valido = false;
+  let valido = false;d
 
   if (nota) {
     if (valor === "") {
@@ -405,13 +405,3 @@ btnCancelarEdicao.addEventListener("click", () => {
   camposEdicao.replaceChildren();
   mensagem(mensagemEdicao, "");
 });
-
-telaAcesso.hidden = false;
-areaBoletim.hidden = true;
-editorDados.hidden = true;
-pinInput.value = "";
-
-ChatGPT é uma IA e pode cometer erros.
-
-Nenhum arquivo escolhidoNenhum arquivo escolhidoNenhum arquivo escolhido
-
