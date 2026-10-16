@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -8,56 +9,126 @@
 </head>
 <body>
 
-  <!-- Cabealho -->
-  <header class="cabecalho">
-    <h1>📘 Boletim Digital</h1>
-    <p class="subtitulo">🎓 8º Ano</p>
-  </header>
+  <!-- Área de acesso por PIN -->
+  <section class="acesso-container" id="telaAcesso">
+    <div class="acesso-card">
+      <h1>📘 Boletim Digital</h1>
+      <p class="subtitulo">🎓 8º Ano</p>
 
-  <!-- Cards de resumo -->
-  <section class="cards">
-    <div class="card">
-      <span class="card-titulo">📊 Média Geral</span>
-      <span class="card-valor" id="mediaGeral">—</span>
-    </div>
-    <div class="card">
-      <span class="card-titulo">❌ Total de Faltas</span>
-      <span class="card-valor" id="totalFaltas">—</span>
-    </div>
-    <div class="card">
-      <span class="card-titulo">✅ Bom Desempenho</span>
-      <span class="card-valor" id="qtdBom">—</span>
-    </div>
-    <div class="card">
-      <span class="card-titulo">⚠️ Precisam de Atenção</span>
-      <span class="card-valor" id="qtdAtencao">—</span>
-    </div>
-    <div class="card">
-      <span class="card-titulo">🗓️ Frequência</span>
-      <span class="card-valor" id="frequencia">—</span>
-      <span class="card-extra" id="frequenciaTexto"></span>
+      <div class="identificacao-aluno">
+        <p><strong>Turma:</strong> 8C</p>
+        <p><strong>Número de chamada:</strong> 34</p>
+      </div>
+
+      <form id="formAcesso">
+        <label for="pinInput">Digite seu PIN</label>
+        <input
+          type="password"
+          id="pinInput"
+          name="pin"
+          inputmode="numeric"
+          autocomplete="off"
+          placeholder="PIN"
+          required
+        />
+        <button type="submit" id="btnEntrar">Entrar</button>
+      </form>
+
+      <p id="mensagemAcesso" role="status" aria-live="polite"></p>
     </div>
   </section>
 
-  <!-- Tabela de notas -->
-  <section class="tabela-container">
-    <table class="boletim">
-      <thead>
-        <tr>
-          <th>📚 Disciplina</th>
-          <th>1️⃣ 1º Tri</th>
-          <th>2️⃣ 2º Tri</th>
-          <th>3️⃣ 3º Tri</th>
-          <th>📈 Média</th>
-          <th>❌ Faltas</th>
-          <th>🏷️ Situação</th>
-        </tr>
-      </thead>
-      <tbody id="corpoTabela">
-        <!-- As linhas serão criadas pelo JavaScript -->
-      </tbody>
-    </table>
-  </section>
+  <!-- Boletim: aparece depois do acesso autorizado -->
+  <main id="areaBoletim" hidden>
+
+    <!-- Cabeçalho -->
+    <header class="cabecalho">
+      <h1>📘 Boletim Digital</h1>
+      <p class="subtitulo">🎓 8º Ano</p>
+    </header>
+
+    <!-- Controles de edição -->
+    <section class="controles-boletim" aria-label="Controles do boletim">
+      <button type="button" id="btnAlterarDados">
+        Alterar dados
+      </button>
+
+      <p id="mensagemBoletim" role="status" aria-live="polite"></p>
+    </section>
+
+    <!-- Editor de notas e faltas -->
+    <section class="editor-container" id="editorDados" hidden>
+      <h2>Alterar notas e faltas</h2>
+      <p>Preencha as notas de 0 a 10 e as faltas com números inteiros iguais ou maiores que zero.</p>
+
+      <form id="formEdicao">
+        <div id="camposEdicao"></div>
+
+        <div class="editor-acoes">
+          <button type="submit" id="btnSalvarAlteracoes">
+            Salvar alterações
+          </button>
+
+          <button type="button" id="btnCancelarEdicao">
+            Cancelar
+          </button>
+        </div>
+
+        <p id="mensagemEdicao" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <!-- Cards de resumo -->
+    <section class="cards">
+      <div class="card">
+        <span class="card-titulo">📊 Média Geral</span>
+        <span class="card-valor" id="mediaGeral">—</span>
+      </div>
+
+      <div class="card">
+        <span class="card-titulo">❌ Total de Faltas</span>
+        <span class="card-valor" id="totalFaltas">—</span>
+      </div>
+
+      <div class="card">
+        <span class="card-titulo">✅ Bom Desempenho</span>
+        <span class="card-valor" id="qtdBom">—</span>
+      </div>
+
+      <div class="card">
+        <span class="card-titulo">⚠️ Precisam de Atenção</span>
+        <span class="card-valor" id="qtdAtencao">—</span>
+      </div>
+
+      <div class="card">
+        <span class="card-titulo">🗓️ Frequência</span>
+        <span class="card-valor" id="frequencia">—</span>
+        <span class="card-extra" id="frequenciaTexto"></span>
+      </div>
+    </section>
+
+    <!-- Tabela de notas -->
+    <section class="tabela-container">
+      <table class="boletim">
+        <thead>
+          <tr>
+            <th>📚 Disciplina</th>
+            <th>1️⃣ 1º Tri</th>
+            <th>2️⃣ 2º Tri</th>
+            <th>3️⃣ 3º Tri</th>
+            <th>📈 Média</th>
+            <th>❌ Faltas</th>
+            <th>🏷️ Situação</th>
+          </tr>
+        </thead>
+
+        <tbody id="corpoTabela">
+          <!-- As linhas serão criadas pelo JavaScript -->
+        </tbody>
+      </table>
+    </section>
+
+  </main>
 
   <script src="script.js"></script>
 </body>
