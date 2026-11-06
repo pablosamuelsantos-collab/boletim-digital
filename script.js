@@ -288,7 +288,7 @@ function validarCampo(input) {
   const valor = input.value.trim();
   const nota = input.name.startsWith("tri");
   let convertido = null;
-  let valido = false;d
+  let valido = false;
 
   if (nota) {
     if (valor === "") {
