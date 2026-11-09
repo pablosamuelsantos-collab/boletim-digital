@@ -1,4 +1,4 @@
-* =========================================================
+/* =========================================================
    BOLETIM DIGITAL - 8º ANO (TURMA 8C, Nº 27)
    ========================================================= */
 
@@ -91,6 +91,8 @@ function definirSituacao(media) {
    --------------------------------------------------------- */
 function renderizarBoletim(listaDisciplinas) {
   const corpoTabela = document.getElementById("corpo-tabela");
+  if (!corpoTabela) return;
+
   corpoTabela.innerHTML = "";
 
   let somaMedias = 0;
@@ -140,6 +142,43 @@ function renderizarBoletim(listaDisciplinas) {
     tdT3.textContent = formatarNota(n3);
 
     const tdMedia = document.createElement("td");
-    tdMedia.textContent = media === null ? "Ainda não lançada" : formatarNota(media);
+    tdMedia.textContent = media === null ? "—" : formatarNota(media);
 
-    const td
+    const tdFaltas = document.createElement("td");
+    tdFaltas.textContent = faltas;
+
+    const tdSituacao = document.createElement("td");
+    tdSituacao.textContent = situacao;
+    tdSituacao.className = classeSituacao;
+
+    linha.appendChild(tdNome);
+    linha.appendChild(tdT1);
+    linha.appendChild(tdT2);
+    linha.appendChild(tdT3);
+    linha.appendChild(tdMedia);
+    linha.appendChild(tdFaltas);
+    linha.appendChild(tdSituacao);
+
+    corpoTabela.appendChild(linha);
+  });
+
+  // Atualização dos cards de estatísticas globais (se existirem na página)
+  const elMediaGeral = document.getElementById("media-geral");
+  const elTotalFaltas = document.getElementById("total-faltas");
+  const elStatusBom = document.getElementById("total-bom");
+  const elStatusAtencao = document.getElementById("total-atencao");
+
+  if (elMediaGeral) {
+    const mediaGeral = totalMedias > 0 ? (somaMedias / totalMedias) : null;
+    elMediaGeral.textContent = formatarNota(mediaGeral);
+  }
+  if (elTotalFaltas) elTotalFaltas.textContent = totalFaltasGeral;
+  if (elStatusBom) elStatusBom.textContent = contagemBom;
+  if (elStatusAtencao) elStatusAtencao.textContent = contagemAtencao;
+}
+
+/* Inicialização */
+document.addEventListener("DOMContentLoaded", function () {
+  dadosAtuais = disciplinasLocais;
+  renderizarBoletim(dadosAtuais);
+});
