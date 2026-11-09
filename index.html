@@ -1,84 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Boletim Digital</title>
+  <title>Boletim Digital - 8º Ano</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Área de acesso por PIN -->
-  <section class="acesso-container" id="telaAcesso">
-    <div class="acesso-card">
-      <h1>📘 Boletim Digital</h1>
-      <p class="subtitulo">🎓 8º Ano</p>
-
-      <div class="identificacao-aluno">
-        <p><strong>Turma:</strong> 8C</p>
-        <p><strong>Número de chamada:</strong> 34</p>
-      </div>
-
-      <form id="formAcesso">
-        <label for="pinInput">Digite seu PIN</label>
-        <input
-          type="password"
-          id="pinInput"
-          name="pin"
-          inputmode="numeric"
-          autocomplete="off"
-          placeholder="PIN"
-          required
-        />
-        <button type="submit" id="btnEntrar">Entrar</button>
-      </form>
-
-      <p id="mensagemAcesso" role="status" aria-live="polite"></p>
-    </div>
-  </section>
-
-  <!-- Boletim: aparece depois do acesso autorizado -->
-  <main id="areaBoletim" hidden>
-
+  <!-- Container Principal do Boletim -->
+  <main class="container">
+    
     <!-- Cabeçalho -->
     <header class="cabecalho">
-      <h1>📘 Boletim Digital</h1>
-      <p class="subtitulo">🎓 8º Ano</p>
+      <h1>🌊 Boletim Digital</h1>
+      <p class="subtitulo">🎓 8º Ano • Estudante Exemplo</p>
     </header>
 
-    <!-- Controles de edição -->
-    <section class="controles-boletim" aria-label="Controles do boletim">
-      <button type="button" id="btnAlterarDados">
-        Alterar dados
-      </button>
-
-      <p id="mensagemBoletim" role="status" aria-live="polite"></p>
-    </section>
-
-    <!-- Editor de notas e faltas -->
-    <section class="editor-container" id="editorDados" hidden>
-      <h2>Alterar notas e faltas</h2>
-      <p>Preencha as notas de 0 a 10 e as faltas com números inteiros iguais ou maiores que zero.</p>
-
-      <form id="formEdicao">
-        <div id="camposEdicao"></div>
-
-        <div class="editor-acoes">
-          <button type="submit" id="btnSalvarAlteracoes">
-            Salvar alterações
-          </button>
-
-          <button type="button" id="btnCancelarEdicao">
-            Cancelar
-          </button>
-        </div>
-
-        <p id="mensagemEdicao" role="status" aria-live="polite"></p>
-      </form>
-    </section>
-
-    <!-- Cards de resumo -->
+    <!-- Cards de Resumo -->
     <section class="cards">
       <div class="card">
         <span class="card-titulo">📊 Média Geral</span>
@@ -102,12 +41,12 @@
 
       <div class="card">
         <span class="card-titulo">🗓️ Frequência</span>
-        <span class="card-valor" id="frequencia">—</span>
-        <span class="card-extra" id="frequenciaTexto"></span>
+        <span class="card-valor" id="frequencia">92%</span>
+        <span class="card-extra">Frequência adequada</span>
       </div>
     </section>
 
-    <!-- Tabela de notas -->
+    <!-- Tabela Responsiva de Disciplinas -->
     <section class="tabela-container">
       <table class="boletim">
         <thead>
@@ -121,9 +60,8 @@
             <th>🏷️ Situação</th>
           </tr>
         </thead>
-
         <tbody id="corpoTabela">
-          <!-- As linhas serão criadas pelo JavaScript -->
+          <!-- As 15 disciplinas serão geradas automaticamente pelo JavaScript -->
         </tbody>
       </table>
     </section>

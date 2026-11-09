@@ -1,15 +1,9 @@
 /* =========================================================
-   BOLETIM DIGITAL - 8º ANO (TURMA 8C, Nº 27)
+   BOLETIM DIGITAL - 8º ANO (DADOS FICTÍCIOS)
    ========================================================= */
 
-const CONFIG_ALUNO = {
-  turma: "8C",
-  numeroChamada: 27,
-  apiUrl: "https://boletim-api.profbt.com.br"
-};
-
-/* Dados fictícios locais como fallback / padrão inicial */
-let disciplinasLocais = [
+// DADOS BRUTOS: Guardamos os dados em um Array de Objetos
+const disciplinasLocais = [
   { disciplina: "Língua Portuguesa", tri1: 82, tri2: "7,8", tri3: 85, faltas: [2, 1, 1] },
   { disciplina: "Matemática", tri1: 52, tri2: "5,8", tri3: null, faltas: [3, 2, 1] },
   { disciplina: "Ciências", tri1: "8,1", tri2: 76, tri3: 8.0, faltas: [1, 2, 0] },
@@ -28,157 +22,10 @@ let disciplinasLocais = [
 ];
 
 const MEDIA_MINIMA = 6.0;
-let pinSessao = "";
-let dadosAtuais = [];
 
 /* ---------------------------------------------------------
-   FUNÇÕES DE AJUSTE E NORMALIZAÇÃO
+   FUNÇÕES DE CÁLCULO E NORMALIZAÇÃO
    --------------------------------------------------------- */
-function normalizarNota(valor) {
-  if (valor === null || valor === undefined || valor === "") {
-    return null;
-  }
-  const numero = typeof valor === "string"
-    ? parseFloat(valor.replace(",", "."))
-    : Number(valor);
 
-  if (isNaN(numero)) {
-    return null;
-  }
-  if (numero >= 0 && numero <= 10) {
-    return numero;
-  }
-  if (numero > 10 && numero <= 100) {
-    return numero / 10;
-  }
-  return null;
-}
-
-function formatarNota(nota) {
-  if (nota === null || nota === undefined) return "—";
-  return Number(nota).toFixed(1).replace(".", ",");
-}
-
-function somarFaltas(faltas) {
-  if (!Array.isArray(faltas)) return 0;
-  let total = 0;
-  faltas.forEach(function (f) {
-    total += (Number(f) || 0);
-  });
-  return total;
-}
-
-function calcularMedia(notas) {
-  const validas = notas.filter(function (n) {
-    return n !== null && n !== undefined;
-  });
-  if (validas.length === 0) return null;
-  let soma = 0;
-  validas.forEach(function (n) {
-    soma += n;
-  });
-  return soma / validas.length;
-}
-
-function definirSituacao(media) {
-  if (media === null) return "Nota ainda não disponível";
-  if (media >= MEDIA_MINIMA) return "Bom desempenho";
-  return "Atenção";
-}
-
-/* ---------------------------------------------------------
-   RENDERIZAÇÃO DA TABELA E CARDS DE RESUMO
-   --------------------------------------------------------- */
-function renderizarBoletim(listaDisciplinas) {
-  const corpoTabela = document.getElementById("corpo-tabela");
-  if (!corpoTabela) return;
-
-  corpoTabela.innerHTML = "";
-
-  let somaMedias = 0;
-  let totalMedias = 0;
-  let totalFaltasGeral = 0;
-  let contagemBom = 0;
-  let contagemAtencao = 0;
-
-  listaDisciplinas.forEach(function (item) {
-    const n1 = normalizarNota(item.tri1);
-    const n2 = normalizarNota(item.tri2);
-    const n3 = normalizarNota(item.tri3);
-
-    const media = calcularMedia([n1, n2, n3]);
-    const faltasArray = Array.isArray(item.faltas) ? item.faltas : [0, 0, 0];
-    const faltas = somarFaltas(faltasArray);
-    totalFaltasGeral += faltas;
-
-    const situacao = definirSituacao(media);
-
-    if (media !== null) {
-      somaMedias += media;
-      totalMedias++;
-      if (media >= MEDIA_MINIMA) {
-        contagemBom++;
-      } else {
-        contagemAtencao++;
-      }
-    }
-
-    let classeSituacao = "situacao-sem-nota";
-    if (situacao === "Bom desempenho") classeSituacao = "situacao-bom";
-    if (situacao === "Atenção") classeSituacao = "situacao-atencao";
-
-    const linha = document.createElement("tr");
-
-    const tdNome = document.createElement("td");
-    tdNome.textContent = item.disciplina;
-
-    const tdT1 = document.createElement("td");
-    tdT1.textContent = formatarNota(n1);
-
-    const tdT2 = document.createElement("td");
-    tdT2.textContent = formatarNota(n2);
-
-    const tdT3 = document.createElement("td");
-    tdT3.textContent = formatarNota(n3);
-
-    const tdMedia = document.createElement("td");
-    tdMedia.textContent = media === null ? "—" : formatarNota(media);
-
-    const tdFaltas = document.createElement("td");
-    tdFaltas.textContent = faltas;
-
-    const tdSituacao = document.createElement("td");
-    tdSituacao.textContent = situacao;
-    tdSituacao.className = classeSituacao;
-
-    linha.appendChild(tdNome);
-    linha.appendChild(tdT1);
-    linha.appendChild(tdT2);
-    linha.appendChild(tdT3);
-    linha.appendChild(tdMedia);
-    linha.appendChild(tdFaltas);
-    linha.appendChild(tdSituacao);
-
-    corpoTabela.appendChild(linha);
-  });
-
-  // Atualização dos cards de estatísticas globais (se existirem na página)
-  const elMediaGeral = document.getElementById("media-geral");
-  const elTotalFaltas = document.getElementById("total-faltas");
-  const elStatusBom = document.getElementById("total-bom");
-  const elStatusAtencao = document.getElementById("total-atencao");
-
-  if (elMediaGeral) {
-    const mediaGeral = totalMedias > 0 ? (somaMedias / totalMedias) : null;
-    elMediaGeral.textContent = formatarNota(mediaGeral);
-  }
-  if (elTotalFaltas) elTotalFaltas.textContent = totalFaltasGeral;
-  if (elStatusBom) elStatusBom.textContent = contagemBom;
-  if (elStatusAtencao) elStatusAtencao.textContent = contagemAtencao;
-}
-
-/* Inicialização */
-document.addEventListener("DOMContentLoaded", function () {
-  dadosAtuais = disciplinasLocais;
-  renderizarBoletim(dadosAtuais);
-});
+// Normaliza as notas para a escala de 0 a 10
+function normalizarNota(

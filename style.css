@@ -1,5 +1,4 @@
-
-/* ===== Configurações gerais ===== */
+/* ===== Configurações Gerais e Tema Aquário ===== */
 * {
   margin: 0;
   padding: 0;
@@ -8,123 +7,16 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #12121c; /* fundo escuro */
-  color: #eaeaf5;            /* texto claro */
+  background: linear-gradient(180deg, #0a192f 0%, #020c1b 100%); /* Fundo azul marinho profundo */
+  color: #e6f1ff; /* Texto claro azulado */
   padding: 20px;
   line-height: 1.5;
+  min-height: 100vh;
 }
 
-[hidden] {
-  display: none !important;
-}
-
-/* ===== Área de acesso ===== */
-.acesso-container {
-  min-height: calc(100vh - 40px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.acesso-card {
-  width: 100%;
-  max-width: 420px;
-  padding: 28px;
-  background-color: #1a1a2b;
-  border: 1px solid #2a2a40;
-  border-radius: 16px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
-}
-
-.acesso-card h1 {
-  text-align: center;
-  font-size: 1.8rem;
-  background: linear-gradient(90deg, #8a5cf6, #3b82f6);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.acesso-card .subtitulo {
-  text-align: center;
-  margin-bottom: 22px;
-}
-
-.identificacao-aluno {
-  padding: 14px;
-  margin-bottom: 22px;
-  background-color: #22223a;
-  border-radius: 10px;
-}
-
-.identificacao-aluno p + p {
-  margin-top: 5px;
-}
-
-#formAcesso {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-#formAcesso label,
-.editor-container label {
-  font-weight: bold;
-  font-size: 0.95rem;
-}
-
-#pinInput,
-.editor-container input {
-  width: 100%;
-  min-width: 0;
-  padding: 12px;
-  border: 1px solid #454568;
-  border-radius: 8px;
-  background-color: #12121c;
-  color: #eaeaf5;
-  font: inherit;
-}
-
-#pinInput:focus,
-.editor-container input:focus {
-  outline: 2px solid #8a5cf6;
-  outline-offset: 2px;
-}
-
-button {
-  padding: 11px 16px;
-  border: none;
-  border-radius: 8px;
-  background: linear-gradient(90deg, #6d28d9, #2563eb);
-  color: #fff;
-  font: inherit;
-  font-weight: bold;
-  cursor: pointer;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-button:hover:not(:disabled) {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-button:disabled {
-  opacity: 0.6;
-  cursor: wait;
-}
-
-#mensagemAcesso,
-#mensagemBoletim,
-#mensagemEdicao {
-  margin-top: 12px;
-  font-size: 0.95rem;
-  overflow-wrap: anywhere;
-}
-
-#mensagemAcesso:empty,
-#mensagemBoletim:empty,
-#mensagemEdicao:empty {
-  display: none;
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 /* ===== Cabeçalho ===== */
@@ -134,208 +26,127 @@ button:disabled {
 }
 
 .cabecalho h1 {
-  font-size: 2rem;
-  background: linear-gradient(90deg, #8a5cf6, #3b82f6);
+  font-size: 2.2rem;
+  background: linear-gradient(90deg, #64ffda, #00b4d8);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .subtitulo {
-  color: #a5a5c4;
+  color: #8892b0;
   font-size: 1.1rem;
   margin-top: 4px;
 }
 
-/* ===== Controles do boletim ===== */
-.controles-boletim {
-  margin-bottom: 20px;
-  padding: 16px;
-  background-color: #1a1a2b;
-  border-radius: 12px;
-  border: 1px solid #2a2a40;
-}
-
-#mensagemBoletim {
-  margin-bottom: 0;
-}
-
-/* ===== Editor de notas e faltas ===== */
-.editor-container {
-  margin-bottom: 30px;
-  padding: 20px;
-  background-color: #1a1a2b;
-  border: 1px solid #2a2a40;
-  border-radius: 12px;
-}
-
-.editor-container h2 {
-  margin-bottom: 8px;
-  font-size: 1.35rem;
-  color: #c4b5fd;
-}
-
-.editor-container > p {
-  margin-bottom: 18px;
-  color: #c7c7df;
-}
-
-.editor-disciplina {
-  margin-bottom: 18px;
-  padding: 16px;
-  background-color: #22223a;
-  border: 1px solid #353552;
-  border-radius: 10px;
-}
-
-.editor-disciplina h3 {
-  margin-bottom: 12px;
-  font-size: 1.05rem;
-  overflow-wrap: anywhere;
-}
-
-.editor-campos {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.editor-campo {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  min-width: 0;
-}
-
-.editor-campo input[aria-invalid="true"] {
-  border-color: #f87171;
-  outline-color: #f87171;
-}
-
-.erro-campo {
-  min-height: 0;
-  color: #fca5a5;
-  font-size: 0.82rem;
-  overflow-wrap: anywhere;
-}
-
-.erro-campo:empty {
-  display: none;
-}
-
-.editor-acoes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-#btnCancelarEdicao {
-  background: #353552;
-}
-
-/* ===== Cards de resumo ===== */
+/* ===== Cards de Resumo (Estilo Bolha Aquática) ===== */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 16px;
   margin-bottom: 30px;
 }
 
 .card {
-  background: linear-gradient(135deg, #6d28d9, #2563eb);
+  background: rgba(16, 42, 77, 0.6);
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  backdrop-filter: blur(8px);
   border-radius: 14px;
   padding: 18px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  box-shadow: 0 6px 18px rgba(109, 40, 217, 0.35);
-  transition: transform 0.2s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .card:hover {
   transform: translateY(-4px);
+  border-color: rgba(100, 255, 218, 0.5);
 }
 
 .card-titulo {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: bold;
-  opacity: 0.9;
+  color: #8892b0;
   margin-bottom: 6px;
 }
 
 .card-valor {
   font-size: 1.8rem;
   font-weight: bold;
+  color: #64ffda;
 }
 
 .card-extra {
   font-size: 0.85rem;
   margin-top: 4px;
-  opacity: 0.9;
+  color: #00b4d8;
 }
 
-/* ===== Tabela ===== */
+/* ===== Tabela de Disciplinas (Translúcida) ===== */
 .tabela-container {
-  overflow-x: auto; /* permite rolar no celular */
+  overflow-x: auto; /* Garante rolagem suave em celulares */
   border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .boletim {
   width: 100%;
   border-collapse: collapse;
-  min-width: 700px; /* garante legibilidade no celular */
-  background-color: #1a1a2b;
+  min-width: 700px;
+  background-color: rgba(16, 42, 77, 0.5);
   border-radius: 12px;
   overflow: hidden;
 }
 
 .boletim thead {
-  background: linear-gradient(90deg, #6d28d9, #2563eb);
+  background: linear-gradient(90deg, #0d3b66, #005f73);
 }
 
 .boletim th {
   padding: 14px 10px;
   text-align: left;
   font-size: 0.95rem;
+  color: #64ffda;
   white-space: nowrap;
 }
 
 .boletim td {
   padding: 12px 10px;
-  border-bottom: 1px solid #2a2a40;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   font-size: 0.95rem;
 }
 
 .boletim tbody tr:hover {
-  background-color: #22223a;
+  background-color: rgba(100, 255, 218, 0.05);
 }
 
-/* Situações com cores diferentes */
+/* Situações dos Alunos */
 .situacao-bom {
-  color: #4ade80;
+  color: #64ffda;
   font-weight: bold;
 }
 
 .situacao-atencao {
-  color: #fbbf24;
+  color: #ffb703;
   font-weight: bold;
 }
 
 .situacao-sem-nota {
-  color: #a5a5c4;
+  color: #8892b0;
   font-style: italic;
 }
 
-/* ===== Ajustes para telas pequenas ===== */
+/* ===== Responsividade para Celulares ===== */
 @media (max-width: 600px) {
   body {
     padding: 12px;
   }
 
   .cabecalho h1 {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
   }
 
   .card-valor {
@@ -346,35 +157,5 @@ button:disabled {
   .boletim td {
     font-size: 0.85rem;
     padding: 10px 8px;
-  }
-
-  .acesso-card {
-    padding: 20px;
-  }
-
-  .editor-container {
-    padding: 14px;
-  }
-
-  .editor-disciplina {
-    padding: 12px;
-  }
-
-  .editor-campos {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .editor-acoes {
-    flex-direction: column;
-  }
-
-  .editor-acoes button {
-    width: 100%;
-  }
-}
-
-@media (max-width: 360px) {
-  .editor-campos {
-    grid-template-columns: minmax(0, 1fr);
   }
 }
